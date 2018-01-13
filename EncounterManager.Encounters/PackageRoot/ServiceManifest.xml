@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="EncounterManager.EncountersPkg" Version="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <ServiceTypes>
+    <StatefulServiceType ServiceTypeName="EncounterType" HasPersistedState="true">
+      <Extensions>
+        <Extension Name="__GeneratedServiceType__" GeneratedId="39be0431-955d-4a38-b8a8-0f9a34911fcc|Persisted">
+          <GeneratedNames xmlns="http://schemas.microsoft.com/2015/03/fabact-no-schema">
+            <DefaultService Name="Encounter" />
+            <ServiceEndpoint Name="EncounterEndpoint" />
+            <ReplicatorEndpoint Name="EncounterReplicatorEndpoint" />
+            <ReplicatorConfigSection Name="EncounterReplicatorConfig" />
+            <ReplicatorSecurityConfigSection Name="EncounterReplicatorSecurityConfig" />
+            <StoreConfigSection Name="EncounterLocalStoreConfig" />
+          </GeneratedNames>
+        </Extension>
+      </Extensions>
+    </StatefulServiceType>
+    <StatefulServiceType ServiceTypeName="EncounterLoaderType">
+      <Extensions>
+        <Extension Name="__GeneratedServiceType__" GeneratedId="cfa2850e-e560-45b8-ab07-0c6291fd2ada|None">
+          <GeneratedNames xmlns="http://schemas.microsoft.com/2015/03/fabact-no-schema">
+            <DefaultService Name="EncounterLoader" />
+            <ServiceEndpoint Name="EncounterLoaderEndpoint" />
+            <ReplicatorEndpoint Name="EncounterLoaderReplicatorEndpoint" />
+            <ReplicatorConfigSection Name="EncounterLoaderReplicatorConfig" />
+            <ReplicatorSecurityConfigSection Name="EncounterLoaderReplicatorSecurityConfig" />
+            <StoreConfigSection Name="EncounterLoaderLocalStoreConfig" />
+          </GeneratedNames>
+        </Extension>
+      </Extensions>
+    </StatefulServiceType>
+  </ServiceTypes>
+  <CodePackage Name="Code" Version="1.0.0">
+    <EntryPoint>
+      <ExeHost>
+        <Program>EncounterManager.Encounters.exe</Program>
+      </ExeHost>
+    </EntryPoint>
+  </CodePackage>
+  <ConfigPackage Name="Config" Version="1.0.0" />
+  <Resources>
+    <Endpoints>
+      <Endpoint Name="EncounterEndpoint" />
+      <Endpoint Name="EncounterReplicatorEndpoint" />
+      <Endpoint Name="EncounterLoaderEndpoint" />
+      <Endpoint Name="EncounterLoaderReplicatorEndpoint" />
+    </Endpoints>
+  </Resources>
+  <!-- The content will be generated during build -->
+</ServiceManifest>

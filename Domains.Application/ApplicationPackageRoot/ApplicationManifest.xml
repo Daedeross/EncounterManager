@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="EncounterManagerDomainsType" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Parameters>
+    <Parameter Name="ClusterCertThumbprint" DefaultValue="" />
+    <Parameter Name="ReplicatorSecurityConfig_CredentialType" DefaultValue="None" />
+    <Parameter Name="ReplicatorSecurityConfig_AllowedCommonNames" DefaultValue="" />
+    <Parameter Name="Azure_ClientId" DefaultValue="" />
+    <Parameter Name="Azure_ClientSecret" DefaultValue="" />
+    <Parameter Name="Azure_UseKeyVault" DefaultValue="false" />
+    <Parameter Name="Azure_KeyVaultUri" DefaultValue="" />
+    <Parameter Name="Encounter_PartitionCount" DefaultValue="1" />
+    <Parameter Name="Encounter_MinReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="Encounter_TargetReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="EncounterLoader_PartitionCount" DefaultValue="1" />
+    <Parameter Name="EncounterLoader_MinReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="EncounterLoader_TargetReplicaSetSize" DefaultValue="1" />
+  </Parameters>
+  <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
+       should match the Name and Version attributes of the ServiceManifest element defined in the 
+       ServiceManifest.xml file. -->
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="EncounterManager.EncountersPkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides>
+      <ConfigOverride Name="Config">
+        <Settings>
+          <Section Name="Azure">
+            <Parameter Name="ClientId" Value="[Azure_ClientId]" />
+            <Parameter Name="ClientSecret" Value="[Azure_ClientSecret]" />
+            <Parameter Name="UseKeyVault" Value="[Azure_UseKeyVault]" />
+            <Parameter Name="CertificateThumbprint" Value="[ClusterCertThumbprint]" />
+            <Parameter Name="KeyVaultUri" Value="[Azure_KeyVaultUri]" />
+          </Section>
+        </Settings>
+      </ConfigOverride>
+    </ConfigOverrides>
+  </ServiceManifestImport>
+  <DefaultServices>
+    <Service Name="Encounter" GeneratedIdRef="39be0431-955d-4a38-b8a8-0f9a34911fcc|Persisted">
+      <StatefulService ServiceTypeName="EncounterType" TargetReplicaSetSize="[Encounter_TargetReplicaSetSize]" MinReplicaSetSize="[Encounter_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[Encounter_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+    <Service Name="EncounterLoader" GeneratedIdRef="cfa2850e-e560-45b8-ab07-0c6291fd2ada|None">
+      <StatefulService ServiceTypeName="EncounterLoaderType" TargetReplicaSetSize="[EncounterLoader_TargetReplicaSetSize]" MinReplicaSetSize="[EncounterLoader_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[EncounterLoader_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+  </DefaultServices>
+</ApplicationManifest>

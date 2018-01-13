@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <!-- Add your custom configuration sections and parameters here -->
+  <Section Name="Azure">
+    <Parameter Name="ClientId" Value="" MustOverride="true" />
+    <Parameter Name="ClientSecret" Value="" MustOverride="true" />
+    <Parameter Name="UseKeyVault" Value="false" MustOverride="true" />
+    <Parameter Name="CertificateThumbprint" Value="" MustOverride="true" />
+    <Parameter Name="KeyVaultUri" Value="" MustOverride="true" />
+  </Section>
+  <Section Name="EncounterReplicatorConfig">
+    <Parameter Name="ReplicatorEndpoint" Value="EncounterReplicatorEndpoint" />
+    <Parameter Name="BatchAcknowledgementInterval" Value="0.005" />
+  </Section>
+  <Section Name="EncounterReplicatorSecurityConfig">
+    <Parameter Name="CredentialType" Value="None" />
+  </Section>
+  <Section Name="EncounterLoaderReplicatorConfig">
+    <Parameter Name="ReplicatorEndpoint" Value="EncounterLoaderReplicatorEndpoint" />
+    <Parameter Name="BatchAcknowledgementInterval" Value="0.005" />
+  </Section>
+  <Section Name="EncounterLoaderReplicatorSecurityConfig">
+    <Parameter Name="CredentialType" Value="None" />
+  </Section>
+</Settings>

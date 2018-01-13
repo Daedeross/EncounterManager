@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <TargetFramework>net461</TargetFramework>
+    <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+    <AssemblyName>EncounterManager.Users.UserRegistry</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>EncounterManager.Users.UserRegistry</PackageId>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+  </PropertyGroup>
+
+  
+  <ItemGroup>
+    <PackageReference Include="Castle.Facilities.ServiceFabricIntegration" Version="1.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EncounterManager.Users.Contract\EncounterManager.Users.Contract.csproj" />
+    <ProjectReference Include="..\EncounterManager.WindsorIntegration\EncounterManager.WindsorIntegration.csproj" />
+  </ItemGroup>
+
+</Project>
